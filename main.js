@@ -1,26 +1,26 @@
 (function(){
-var L='bn';try{L=localStorage.getItem('lang')==='en'?'en':'bn'}catch(e){}
-var root=document.documentElement,bnTitle=document.title,bnDesc=(document.querySelector('meta[name=description]')||{}).content;
-function apply(l){
- L=l;root.lang=l;
- document.querySelectorAll('[data-en]').forEach(function(e){if(e.dataset.bn===undefined)e.dataset.bn=e.innerHTML;e.innerHTML=l==='en'?e.dataset.en:e.dataset.bn});
- document.querySelectorAll('img[data-alt-en]').forEach(function(i){if(!i.dataset.altBn)i.dataset.altBn=i.alt;i.alt=l==='en'?i.dataset.altEn:i.dataset.altBn});
- document.title=l==='en'?root.dataset.titleEn:bnTitle;
- var m=document.querySelector('meta[name=description]');if(m)m.content=l==='en'?root.dataset.descEn:bnDesc;
- document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.l===l)});
- try{localStorage.setItem('lang',l)}catch(e){}
+var L='bn';try{if(localStorage.getItem('lang')==='en')L='en'}catch(e){}
+function apply(){
+ document.documentElement.lang=L;
+ document.querySelectorAll('[data-en]').forEach(function(e){
+  if(e.dataset.bn===undefined)e.dataset.bn=e.textContent;
+  e.textContent=L==='en'?e.dataset.en:e.dataset.bn;
+ });
+ document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.l===L)});
+ var tt=document.querySelector('title');if(tt&&tt.dataset.en){if(!tt.dataset.bn)tt.dataset.bn=tt.textContent;document.title=L==='en'?tt.dataset.en:tt.dataset.bn}
 }
-document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){apply(b.dataset.l)})});
-if(L==='en')apply('en');
-var nav=document.getElementById('nav'),bt=document.getElementById('burger');
-if(bt)bt.addEventListener('click',function(){var o=nav.classList.toggle('open');bt.setAttribute('aria-expanded',o)});
-var lb;
-document.querySelectorAll('.gi').forEach(function(g){g.addEventListener('click',function(){
- if(!lb){lb=document.createElement('dialog');lb.addEventListener('click',function(e){if(e.target===lb)lb.close()});document.body.appendChild(lb)}
- var cap=L==='en'?g.dataset.en:g.dataset.bn,x=L==='en'?'Close':'বন্ধ করুন';
- lb.innerHTML='<figure class="ph"><img alt="" src="'+g.dataset.src+'" onerror="this.remove()"></figure><div class="cap"><span></span><button class="btn ghost" type="button" style="min-height:40px">'+x+'</button></div>';
- lb.querySelector('span').textContent=cap;lb.querySelector('button').onclick=function(){lb.close()};lb.querySelector('img').alt=cap;lb.showModal();
-})});
-var f=document.getElementById('enq');
-if(f)f.addEventListener('submit',function(e){e.preventDefault();var n=document.getElementById('enq-note');n.hidden=false;n.innerHTML=L==='en'?n.dataset.en:n.dataset.bn});
+document.querySelectorAll('.lang button').forEach(function(b){b.onclick=function(){L=b.dataset.l;try{localStorage.setItem('lang',L)}catch(e){}apply()}});
+var bt=document.getElementById('burger'),nv=document.getElementById('nav');
+if(bt)bt.onclick=function(){var o=nv.classList.toggle('open');bt.setAttribute('aria-expanded',o)};
+var lb=document.getElementById('lb');
+document.querySelectorAll('[data-g]').forEach(function(b){b.onclick=function(){
+ var p=b.querySelector('.ph').cloneNode(true);var cap=document.createElement('div');cap.className='cap';
+ cap.innerHTML='<span></span><button class="btn ghost" style="min-height:40px" type="button"></button>';
+ cap.firstChild.textContent=b.getAttribute('aria-label');var c=cap.lastChild;c.textContent=L==='en'?'Close':'বন্ধ করুন';c.onclick=function(){lb.close()};
+ lb.innerHTML='';lb.appendChild(p);lb.appendChild(cap);lb.showModal()}});
+if(lb)lb.onclick=function(e){if(e.target===lb)lb.close()};
+var f=document.getElementById('f');
+if(f)f.onsubmit=function(e){e.preventDefault();var n=document.getElementById('fn');n.hidden=false;
+ n.textContent=L==='en'?'This form is not connected to a backend yet; your message was NOT sent. Please call 01711-574939.':'এই ফর্মটি এখনও কোনো সার্ভারের সাথে যুক্ত নয়; আপনার বার্তা পাঠানো হয়নি। অনুগ্রহ করে ০১৭১১-৫৭৪৯৩৯ নম্বরে কল করুন।'};
+apply();
 })();

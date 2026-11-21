@@ -1,23 +1,40 @@
-# M/s Nabi Enterprises & M/s Jhimik Transport Agency — Website
+# M/s Nabi Enterprises & M/s Jhimik Transport Agency
 
-Static multi-page website, no dependencies. Bengali is the default language; English is available from the header switcher (choice persists via localStorage).
+Plain static site (HTML + CSS + JS). No build step, no Node, no Python, no GitHub Actions.
 
-## Structure
-- `site/` — deployable output (clean URLs: `/about/`, `/products/cement/` …)
-- `build.py`, `style.css`, `main.js` — generator and shared source. Edit these, then run `python3 build.py site`.
-- `site/assets/logo-*.svg` — logo mark (dark/light) and horizontal lockup.
-- `site/assets/images/MANIFEST.md` — **the 16 photographs still required** (exact filenames and subjects).
+## GitHub Pages
+1. Extract the ZIP and upload ALL files (including `.nojekyll`) to the root of the repository `MsNobiEnterprise`, branch `main`.
+2. Settings > Pages > Source: **Deploy from a branch** > Branch: **main** > Folder: **/ (root)** > Save.
+3. Site URL: https://editoranikadhikary.github.io/MsNobiEnterprise/
 
-## Run locally
-    cd site && python3 -m http.server 8000     # open http://localhost:8000/
-(Paths are root-absolute, so serve from the `site/` folder; opening files directly via file:// will not resolve them.)
+## Photographs — NOT included yet
+Add these 21 JPG files to the root (same folder as index.html). Until a file exists, its frame shows a plain navy block:
+- about.jpg
+- cargo-ship.jpg
+- catalog.jpg
+- contact.jpg
+- gallery.jpg
+- hero.jpg
+- jhimik.jpg
+- nabi.jpg
+- port.jpg
+- product-cement.jpg
+- product-coal.jpg
+- product-fertilizer.jpg
+- product-oil-cake.jpg
+- product-rice.jpg
+- product-stone.jpg
+- product-wheat.jpg
+- proprietor.jpg
+- road.jpg
+- truck.jpg
+- warehouse.jpg
+- waterway.jpg
+Suggested sources: Unsplash, Pexels, Pixabay (check licence). Resize to about 1600px wide, under 300 KB each.
 
-## Deploy
-Upload `site/` to any static host (Netlify, Cloudflare Pages, GitHub Pages user site, Nginx). `404.html` is the error page. Folder URLs work out of the box on all of these.
-
-## Open items before launch
-1. **Photographs are not included.** Add the files listed in `MANIFEST.md`; until then pages show a navy fallback block. Record licences in `CREDITS.md`.
-2. **Contact form is not connected** to any backend; it says so on submit. Connect a form service or server endpoint.
-3. Phone numbers and address come from the existing site and need owner confirmation. No email, map, registration, history or specifications were invented.
-4. Proprietor portrait needs a genuine photograph (`about/proprietor-portrait.jpg`).
-5. Bengali/English copy should be proofread by a native reader.
+## Still incomplete
+- Photographs (list above); proprietor portrait needs the owner's real photo.
+- Contact form has no backend: it does not send anything and says so.
+- No email address or map: none verified. Phone numbers and address must be confirmed by the owner.
+- No PNG logo (logo.svg and favicon.svg only).
+- Product pages contain only generic, non-specific descriptions (no specifications or prices were invented).
