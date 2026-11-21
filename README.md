@@ -1,20 +1,15 @@
 # M/s Nabi Enterprises & M/s Jhimik Transport Agency
-Plain static site (HTML + CSS + JS + JPG). No build step, no Node, no Python, no GitHub Actions.
+Plain static site. No build step. Every page has its CSS and JavaScript built in, so the design cannot disappear if a separate file is missing. Photos (.jpg) must sit beside the HTML files.
 
-## Publish on GitHub Pages
-1. In the repository `EditorAnikAdhikary/MsNobiEnterprise` (branch `main`), delete the old website files.
-2. Upload EVERY file from this ZIP (including `.nojekyll`) to the repository root. Commit to `main`.
-3. Settings > Pages > Source: Deploy from a branch > Branch: main > Folder: / (root) > Save.
-4. Live at https://editoranikadhikary.github.io/MsNobiEnterprise/ (allow 1-2 minutes).
+## Publish (GitHub Pages)
+1. In the repo `EditorAnikAdhikary/MsNobiEnterprise` (branch `main`) delete ALL old files.
+2. Upload every file from the extracted ZIP into the repo ROOT (not inside a folder). `index.html` must be visible on the repo's front page.
+3. Settings > Pages > Deploy from a branch > main > / (root).
+4. After 1-2 minutes open https://editoranikadhikary.github.io/MsNobiEnterprise/status.html - every line should say OK.
+   (If GitHub shows README text instead of the site, `index.html` is not in the repo root.)
 
-## Images
-- All 15 supplied photographs (except the business-portrait placeholder, deliberately unused) are in the root.
-- They look AI-generated and are only 418x235 px, so large areas (hero, lightbox) look soft. Replace with higher-resolution files of the SAME filenames when available.
-- The site states on the footer, gallery and transport page that images are illustrative and not photos of the actual fleet, premises or staff. Keep that note unless you replace them with genuine photographs.
-- The proprietor section uses a text monogram, not a photograph. To add a real portrait, send a genuine photo.
-
-## Still incomplete
-- Contact form has no backend: it sends nothing and says so. No verified email address or map location.
-- Phone numbers and address must be confirmed by the owner.
-- Product pages carry only generic descriptions (no specifications, prices or stock).
-- No PNG logo (logo.svg / favicon.svg only).
+## Notes
+- Images are AI-generated illustrations (418x235 px); the site says so. Replace with real/larger files of the same names when available.
+- Fonts load from Google Fonts; if offline, system fonts are used.
+- Contact form has no backend and says so. No email/map (unverified). Confirm phone numbers and address with the owner.
+- The business-portrait placeholder is deliberately unused.
